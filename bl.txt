@@ -1,0 +1,7 @@
+The factors that play into a prompt recommendation are:
+
+- popularity
+- recency
+- recc engine score
+
+The popularity and recc engine score attributes are satisfied by the recommendation engine and recency is calculated with information from the IB API. The math that goes into the 
