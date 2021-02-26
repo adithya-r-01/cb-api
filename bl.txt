@@ -4,4 +4,13 @@ The factors that play into a prompt recommendation are:
 - recency
 - recc engine score
 
-The popularity and recc engine score attributes are satisfied by the recommendation engine and recency is calculated with information from the IB API. The math that goes into the 
+The popularity and recc engine score attributes are satisfied by the recommendation engine and recency is calculated with information from the IB API. The math that goes into the prompt score are as follows:
+
+prompt_score = (0.3) * popularity/[MAX_POPULARITY] + (0.3) * [MIN_TIME]/time + 0.4 * recc_score/[MAX_RECC_SCORE]
+
+Note that the popularity and recency metric are NOT user specific and should be calculated before calculating the recc_score (popularity is the most expensive operation here so do it first and once.
+
+From here the prompts are then stored into the PQ data structure and the post processing stage comes into play:
+
+- Check if prompt in queue matches access modifiers
+- Add to PQ if not full
